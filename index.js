@@ -46,7 +46,7 @@ app.post('/webhook/', function (req, res) {
       }
       if (event.postback) {
   	    let text = JSON.stringify(event.postback)
-  	    sendTextMessage("Hi! this is the Startup Exchange Messenger Bot!")
+  	    sendTextMessage(sender, "Hi! this is the startup Exchange bot", token)
   	    continue
       }
     }
