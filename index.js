@@ -40,8 +40,12 @@ app.post('/webhook/', function (req, res) {
   	    let text = event.message.text
   	    if (text === 'Generic') {
   		    sendGenericMessage(sender)
-  		    continue
-  	    }
+			  continue
+		  }
+  	    // } else if (text === 'Upcoming Events') {
+		// 	  EventSignUp(sender)
+		// 	  continue
+		//   }
   	    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -81,26 +85,16 @@ function sendGenericMessage(sender) {
 		    "payload": {
 				"template_type": "generic",
 			    "elements": [{
-					"title": "First card",
-				    "subtitle": "Element #1 of an hscroll",
-				    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+					"title": "Discover",
+				    "image_url": "https://pbs.twimg.com/profile_images/760579437519921152/xD0enLRb.jpg",
 				    "buttons": [{
 					    "type": "web_url",
-					    "url": "https://www.messenger.com",
-					    "title": "web url"
+					    "url": "http://www.startup.exchange/resources.html",
+					    "title": "How to Start a Startup"
 				    }, {
 					    "type": "postback",
-					    "title": "Postback",
+					    "title": "Upcoming Events",
 					    "payload": "Payload for first element in a generic bubble",
-				    }],
-			    }, {
-				    "title": "Second card",
-				    "subtitle": "Element #2 of an hscroll",
-				    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-				    "buttons": [{
-					    "type": "postback",
-					    "title": "Postback",
-					    "payload": "Payload for second element in a generic bubble",
 				    }],
 			    }]
 		    }
@@ -122,3 +116,42 @@ function sendGenericMessage(sender) {
 	    }
     })
 }
+
+// function EventSignUp (sender) {
+//     let messageData = {
+// 	    "attachment": {
+// 		    "type": "template",
+// 		    "payload": {
+// 				"template_type": "generic",
+// 			    "elements": [{
+// 					"title": "Upcoming Event",
+// 				    "image_url": "https://pbs.twimg.com/profile_images/760579437519921152/xD0enLRb.jpg",
+// 				    "buttons": [{
+// 					    "type": "web_url",
+// 					    "url": "http://www.startup.exchange/resources.html",
+// 					    "title": "How to Start a Startup"
+// 				    }, {
+// 					    "type": "postback",
+// 					    "title": "Upcoming Events",
+// 					    "payload": "Payload for first element in a generic bubble",
+// 				    }],
+// 			    }]
+// 		    }
+// 	    }
+//     }
+//     request({
+// 	    url: 'https://graph.facebook.com/v2.6/me/messages',
+// 	    qs: {access_token:token},
+// 	    method: 'POST',
+// 	    json: {
+// 		    recipient: {id:sender},
+// 		    message: messageData,
+// 	    }
+//     }, function(error, response, body) {
+// 	    if (error) {
+// 		    console.log('Error sending messages: ', error)
+// 	    } else if (response.body.error) {
+// 		    console.log('Error: ', response.body.error)
+// 	    }
+//     })
+// }
