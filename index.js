@@ -39,14 +39,13 @@ app.post('/webhook/', function (req, res) {
 	  if (event.message && event.message.text) {
 		let text = event.message.text
 		if (text === 'Upcoming Events') {
-			sendGenericMessage(sender)
+			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/")
 			continue
 		}
 		sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 	}
 	if (event.postback) {
-		let text = JSON.stringify(event.postback)
-		sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+		sendGenericMessage(sender)
 		continue
 	}
     }
