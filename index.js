@@ -87,7 +87,7 @@ function sendGenericMessage(sender) {
 					    "url": "http://www.startup.exchange/resources.html",
 					    "title": "How to Start a Startup"
 				    }, {
-					    "type": "postback",
+					    "type": "message",
 					    "title": "Upcoming Events",
 					    "payload": "Payload for first element in a generic bubble",
 				    }],
