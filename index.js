@@ -43,11 +43,12 @@ app.post('/webhook/', function (req, res) {
 			continue
 		}
 		sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-	}
-	if (event.postback) {
+	  }
+	  if (event.postback) {
+		sendTextMessage(sender, JSON.stringify(event.postback.message))
 		sendGenericMessage(sender)
 		continue
-	}
+	  }
     }
     res.sendStatus(200)
   })
@@ -87,7 +88,7 @@ function sendGenericMessage(sender) {
 					    "url": "http://www.startup.exchange/resources.html",
 					    "title": "How to Start a Startup"
 				    }, {
-					    "type": "message",
+					    "type": "postback",
 					    "title": "Upcoming Events",
 					    "payload": "Payload for first element in a generic bubble",
 				    }],
