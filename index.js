@@ -47,6 +47,10 @@ app.post('/webhook/', function (req, res) {
   	    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
+		if (text === 'Upcoming Events') {
+			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/", token)
+			continue
+		}
 		  sendTextMessage(sender, "Hi! this is the startup Exchange bot", token)
 		  sendGenericMessage(sender)
 			  continue
