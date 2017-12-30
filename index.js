@@ -36,28 +36,19 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
-      if (event.message && event.message.text) {
-  	    let text = event.message.text
-  	    sendGenericMessage(sender)
-			  continue
-  	    if (text === 'Upcoming Events') {
-			  sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/", token)
-			  continue
-		  }
-  	    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-      }
-      if (event.postback) {
+	  if (event.message && event.message.text) {
 		let text = event.message.text
-		console.log(text)
-		if (text === 'Upcoming Events') {
-			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/", token)
+		if (text === 'Generic') {
+			sendGenericMessage(sender)
 			continue
 		}
-		  sendTextMessage(sender, "Hi! this is the startup Exchange bot", token)
-		  sendGenericMessage(sender)
-			  continue
-  	    continue
-      }
+		sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+	}
+	if (event.postback) {
+		let text = JSON.stringify(event.postback)
+		sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+		continue
+	}
     }
     res.sendStatus(200)
   })
