@@ -46,8 +46,8 @@ app.post('/webhook/', function (req, res) {
 	  }
 	  if (event.postback) {
 		let text = event.postback.title
-		if (text === "Get Started") {
-			sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+		if (text === 'Get Started') {
+			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/")
 			continue
 		}
 		sendGenericMessage(sender)
