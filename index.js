@@ -42,7 +42,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/")
 			continue
 		}
-		sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+		sendGenericMessage(sender)
 	  }
 	  if (event.postback) {
 		let text = event.postback.title
