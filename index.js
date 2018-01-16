@@ -41,8 +41,10 @@ app.post('/webhook/', function (req, res) {
 		if (text === 'Upcoming Events') {
 			sendTextMessage(sender, "https://www.facebook.com/events/1750621848580640/")
 			continue
+		} else if (text == 'Get Started') {
+			sendGenericMessage(sender)
 		}
-		sendGenericMessage(sender)
+		sendTextMessage(sender, "Hi! type 'Get Started' to see more information.")
 	  }
 	  if (event.postback) {
 		let text = event.postback.title
